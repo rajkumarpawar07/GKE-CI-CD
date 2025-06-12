@@ -19,13 +19,12 @@ steps:
   - name: 'gcr.io/cloud-builders/kubectl'
     args: ['apply', '-f', 'k8s']
     env:
-      - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
+      - 'CLOUDSDK_COMPUTE_REGION=us-central1'
       - 'CLOUDSDK_CONTAINER_CLUSTER=gke-cluster'
 
 images:
   - 'us-central1-docker.pkg.dev/grounded-tine-460817-c0/microservices-repo/service1:latest'
   - 'us-central1-docker.pkg.dev/grounded-tine-460817-c0/microservices-repo/service2:latest'
-
 
 options:
   logging: CLOUD_LOGGING_ONLY
