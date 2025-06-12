@@ -1,0 +1,27 @@
+steps:
+  # Build service1
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/grounded-tine-460817-c0/microservices-repo/service1:latest', './service1']
+
+  # Build service2
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/grounded-tine-460817-c0/microservices-repo/service2:latest', './service2']
+
+  # Push service1
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'us-central1-docker.pkg.dev/grounded-tine-460817-c0/microservices-repo/service1:latest']
+
+  # Push service2
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'us-central1-docker.pkg.dev/grounded-tine-460817-c0/microservices-repo/service2:latest']
+
+  # Deploy using kubectl
+  - name: 'gcr.io/cloud-builders/kubectl'
+    args: ['apply', '-f', 'k8s']
+    env:
+      - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=gke-cluster'
+
+images:
+  - 'us-central1-docker.pkg.dev/grounded-tine-460817-c0/microservices-repo/service1:latest'
+  - 'us-central1-docker.pkg.dev/grounded-tine-460817-c0/microservices-repo/service2:latest'
