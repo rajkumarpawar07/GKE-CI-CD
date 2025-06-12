@@ -6,7 +6,7 @@ This project demonstrates a production-grade CI/CD pipeline to deploy two contai
 
 ## 📌 Architecture Diagram
 
-![Architecture Diagram](./assets/architecture.png) <!-- Replace with actual path if different -->
+![Architecture Diagram](./architecture.png) <!-- Replace with actual path if different -->
 
 ---
 
